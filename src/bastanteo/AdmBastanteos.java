@@ -142,5 +142,24 @@ public class AdmBastanteos {
 			throw new ClienteException(mensaje);
 		}
 	}
+	
+	public double bastanteoExisteImporte(String codigoBastanteo) {
+		double importe = 0.00;
+
+		// and && , || or
+		for (Bastanteo bastanteo : bastanteos)
+			if (bastanteo.getCodigo().equals(codigoBastanteo))
+				importe = bastanteo.getImporte();
+		return importe;
+	}
+	
+	public void validarImporte(double importe1, double importe2 ) throws ClienteException {
+		String mensaje = "";
+
+		if (importe1 > importe2) {
+			mensaje += "El Importe ingresado es superior al del Bastanteo";
+			throw new ClienteException(mensaje);
+		}
+	}
 
 }

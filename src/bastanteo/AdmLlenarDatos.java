@@ -104,7 +104,7 @@ public class AdmLlenarDatos {
 		String codcli = "CL001";
 		String intervencion = "A Sola Firma";
 		double importe = 500.00;
-		String fechavenc = "27/11/2011";
+		String fechavenc = "05/12/2011";
 
 		admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli, intervencion, importe, fechavenc);
 		
