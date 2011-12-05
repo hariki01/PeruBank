@@ -19,9 +19,8 @@ public class AdmUsuarioTest {
         String rol = "ADMINISTRADOR";
         //Usuario newUsuario = new Usuario();
         	
-        	adm.registrarUsuario(nombre,documento,email,user,clave,rol);
+        adm.registrarUsuario(nombre,documento,email,user,clave,rol);
       	
-        
       	String nombreRol = "ADMINISTRADOR";
 		String opcion = "AGREGAR";
 		adm.RegistrarRol(nombreRol, opcion);

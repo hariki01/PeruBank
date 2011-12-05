@@ -185,7 +185,8 @@ public class AdmBastanteoVerificacionTest {
 		String intervencion = "";
 		String fechaVenc = "";
 		Date fechaVencimiento;
-
+		double importe_asignar = 1000.00;
+		
 		try {
 			// Cliente
 			admcli.validarClienteRuc(ruc);
@@ -207,30 +208,16 @@ public class AdmBastanteoVerificacionTest {
 			// validar con los valores de retorno
 			String validar_intervencion = "A Sola Firma";
 
+			double importe_destino=admbastanteo.bastanteoExisteImporte(codBast);
+			admbastanteo.validarImporte(importe_asignar, importe_destino);
+			
 			admbastanteo.validarConsulta(grupoRep, intervencion,
 					grupoBastanteo, validar_intervencion);
 
 			assertEquals(grupoBastanteo, grupoRep);
 			assertEquals(intervencion, validar_intervencion);
 
-			fechaVenc = admbastanteo.bastanteoExisteFecha(codBast);
 
-			DateFormat formatter;
-			Date date;
-			String fechaactual;
-			Date fecha;
-			formatter = new SimpleDateFormat("dd/MM/yyyy");
-
-			date = (Date) formatter.parse(fechaVenc);
-			fechaactual = formatter.format(c.getTime());
-			fecha = (Date) formatter.parse(fechaactual);
-
-			boolean sw = false;
-
-			admbastanteo.validarFecha(date, fecha);
-			sw = admbastanteo.retornoFecha(date, fecha);
-
-			ValidarEstadoFecha(sw);
 
 		} catch (ClienteException ex) {
 			System.out.println(ex);
