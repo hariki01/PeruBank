@@ -7,33 +7,48 @@ import org.junit.Test;
 public class AdmUsuarioTest {
 	
 	@Test
-	public void ejecutarLogon() {
+	public void ejecutarLogon() throws ClienteException{
 		
-		AdmUsuario adm = new AdmUsuario();
-		
+		//[1] Datos de ejemplo para Usuario
 		String nombre = "HANS ESPIRITU";
 		String documento = "12345678";
 		String email = "HANS@HOTMAIL.COM";
         String user = "hespiritu";
         String clave = "abc";
         String rol = "ADMINISTRADOR";
-        //Usuario newUsuario = new Usuario();
-        	
-        adm.registrarUsuario(nombre,documento,email,user,clave,rol);
-      	
-      	String nombreRol = "ADMINISTRADOR";
-		String opcion = "AGREGAR";
-		adm.RegistrarRol(nombreRol, opcion);
+
+    	//[2] Datos de ejemplo para Rol
+        String nombreRol = "ADMINISTRADOR";
+		String opcion = "BASTANTEO";
 		
+        boolean accesoUsuarioConcedido = false;
 		
-		//adm.logon(newUsuario.getUser(), newUsuario.getClave());
-		
-		 assertNotNull(adm);
-		
+        try {
+        	//[01] Usuarios
+    		//Creamos una instancia de la clase AdmUsuario
+    		AdmUsuario adm = new AdmUsuario();
+
+            //Ejecutamos registro de nuevo usuario
+            adm.registrarUsuario(nombre,documento,email,user,clave,rol);
+
+            //[02] Roles:
+   			//Ejecutamos registro de nuevo Rol
+    		adm.RegistrarRol(nombreRol, opcion);
+    		
+    		//[03] Ejecutamos el Logon de usuario
+    		accesoUsuarioConcedido = adm.logon(user, clave, opcion);
+    		
+    		 assertNotNull(adm);
+		}
+
+		catch (ClienteException ex) {
+			System.out.println(ex);
+		}
+        
 	}
 
 	@Test
-	public void siRegistrarUsuario(){
+	public void siRegistrarUsuario() throws ClienteException{
 		
 		String nombre = "HANS ESPIRITU";
 		String documento = "12345678";
@@ -53,7 +68,7 @@ public class AdmUsuarioTest {
 	}
 	
 	@Test
-	public void siRegistrarRol(){
+	public void siRegistrarRol() throws ClienteException{
 		
 		String nombre = "ADMINISTRADOR";
 		String opcion = "AGREGAR";

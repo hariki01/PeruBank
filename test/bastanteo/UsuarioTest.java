@@ -7,7 +7,7 @@ import org.junit.Test;
 public class UsuarioTest {
 	
 	@Test
-	public void usuarioAdd(){
+	public void usuarioAdd() throws ClienteException{
 		
 		String nombre = "HANS ESPIRITU";
 		String documento = "12345678";

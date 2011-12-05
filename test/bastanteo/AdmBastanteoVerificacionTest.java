@@ -211,9 +211,6 @@ public class AdmBastanteoVerificacionTest {
 			double importe_destino=admbastanteo.bastanteoExisteImporte(codBast);
 			admbastanteo.validarImporte(importe_asignar, importe_destino);
 			
-			admbastanteo.validarConsulta(grupoRep, intervencion,
-					grupoBastanteo, validar_intervencion);
-
 			assertEquals(grupoBastanteo, grupoRep);
 			assertEquals(intervencion, validar_intervencion);
 
