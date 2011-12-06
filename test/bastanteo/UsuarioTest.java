@@ -11,6 +11,7 @@ public class UsuarioTest {
 		// Administrador - Jorge Alcantara
 		// Carga Inicial 1
 		// Carga Inicial 2
+		// Carga Inicial 3
 		String nombre = "HANS ESPIRITU";
 		String documento = "12345678";
 		String email = "HANS@HOTMAIL.COM";
