@@ -24,7 +24,7 @@ public class AdmBastanteoTest {
 		admpoder = adm.registrarVariosPoderes();
 	}
 
-	@Test//(expected=ClienteException.class)
+	@Test
 	public void siIngresoDatosDeberiaRegistrarBastanteoaSolafirma()
 			throws ClienteException, ParseException {
 
@@ -42,8 +42,6 @@ public class AdmBastanteoTest {
 		String codigopoder = "";
 		String codcli = "";
 
-	//	LlenarDatos();
-
 		try {
 
 			admcli.validarCliente(nombrecli);
@@ -51,7 +49,6 @@ public class AdmBastanteoTest {
 
 			admpoder.validarPoder(nombrepoder, tiposervicio);
 			codigopoder = admpoder.buscarcodigoPoder(nombrepoder, tiposervicio);
-			
 
 			AdmBastanteos admbastanteo = new AdmBastanteos();
 
@@ -85,7 +82,6 @@ public class AdmBastanteoTest {
 
 		String codigopoder = "";
 		String codcli = "";
-//		LlenarDatos();
 
 		try {
 
@@ -130,8 +126,6 @@ public class AdmBastanteoTest {
 
 		String codigopoder = "";
 		String codcli = "";
-		
-	//	LlenarDatos();
 
 		try {
 		
@@ -180,8 +174,6 @@ public class AdmBastanteoTest {
 
 		String codigopoder = "";
 		String codcli = "";
-
-	//	LlenarDatos();
 
 		try {
 
