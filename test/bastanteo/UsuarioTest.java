@@ -37,6 +37,7 @@ public class UsuarioTest {
         //modificado por tu padre;
         //
         //Realizado por harold
+        //Modificado por harold 05/12/2011
 		
 	}
 
