@@ -29,6 +29,7 @@ public class AdmBastanteoTest {
 			throws ClienteException, ParseException {
 
 		// preparamos el ejemplo
+		// Cobro de Cheques
 		String codigo = "001";
 		String nombrepoder = "Cobro de Cheques";
 		String tiposervicio = "Activo";
