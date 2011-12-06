@@ -9,7 +9,8 @@ public class UsuarioTest {
 	@Test
 	public void usuarioAdd() throws ClienteException{
 		// Administrador - Jorge Alcantara
-		// Carga inicial
+		// Carga Inicial 1
+		// Carga Inicial 2
 		String nombre = "HANS ESPIRITU";
 		String documento = "12345678";
 		String email = "HANS@HOTMAIL.COM";
