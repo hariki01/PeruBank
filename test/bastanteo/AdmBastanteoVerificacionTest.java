@@ -172,7 +172,7 @@ public class AdmBastanteoVerificacionTest {
 		Calendar cc = Calendar.getInstance();
 
 		String ruc = "12232720907";// Cliente - RUC
-		String ndoc = "89654023";// Representante DNI
+		String ndoc = "89654023";//
 		String nombrePoder = "Cobro de Cheques";
 		String tipoProducto = "Activo";
 
@@ -213,7 +213,8 @@ public class AdmBastanteoVerificacionTest {
 			
 			assertEquals(grupoBastanteo, grupoRep);
 			assertEquals(intervencion, validar_intervencion);
-			
+
+
 
 		} catch (ClienteException ex) {
 			System.out.println(ex);
