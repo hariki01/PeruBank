@@ -32,6 +32,7 @@ public class UsuarioTest {
         assertEquals(rol, usuario.getRol());   
         
         //Modificado por harold;
+        //modificado por tu padre;
 		
 	}
 
