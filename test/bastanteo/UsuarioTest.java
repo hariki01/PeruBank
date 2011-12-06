@@ -38,6 +38,7 @@ public class UsuarioTest {
         //
         //Realizado por harold
         //Modificado por harold 05/12/2011
+        //Agregando usuarios;
 		
 	}
 
