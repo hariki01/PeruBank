@@ -24,6 +24,8 @@ public class UsuarioTest {
         assertEquals(usuario, usuario.getUser());
         assertEquals(clave, usuario.getClave());
         assertEquals(rol, usuario.getRol());   
+        
+        //Modificado por harold;
 		
 	}
 
