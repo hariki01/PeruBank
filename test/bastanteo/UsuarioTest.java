@@ -17,7 +17,7 @@ public class UsuarioTest {
         String user = "hespiritu";
         String clave = "abc";
         String rol = "ADMINISTRADOR";
-                               
+             //destimo                  
 		Usuario usuario = new Usuario(nombre,documento,email,user,clave,rol);
 		
 		assertEquals(nombre, usuario.getNombre());
@@ -26,6 +26,8 @@ public class UsuarioTest {
         assertEquals(usuario, usuario.getUser());
         assertEquals(clave, usuario.getClave());
         assertEquals(rol, usuario.getRol());   
+        
+        //Modificado por harold;
 		
 	}
 
