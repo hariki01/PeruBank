@@ -7,6 +7,7 @@ public class Rol {
 
 	public Rol(String nombre, String opcion) {
 		// TODO Auto-generated constructor stub
+		super();
 		this.nombre = nombre;
 		this.opcion = opcion;
 	}

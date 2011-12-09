@@ -15,7 +15,7 @@ public class AdmUsuarioTest {
 		String email = "HANS@HOTMAIL.COM";
 		String user = "hespiritu";
 		String clave = "abc";
-		String rol = "ADMINISTRADOR";
+		String rol = "Administrador";
 
 		// [2] Datos de ejemplo para Rol
 		String nombreRol = "ADMINISTRADOR";
@@ -55,7 +55,7 @@ public class AdmUsuarioTest {
 		String email = "HANS@HOTMAIL.COM";
 		String user = "hespiritu";
 		String clave = "abc";
-		String rol = "ADMINISTRADOR";
+		String rol = "Administrador";
 
 		try {
 
@@ -79,7 +79,7 @@ public class AdmUsuarioTest {
 	@Test
 	public void siRegistrarRol() throws ClienteException {
 
-		String nombre = "Limitado";
+		String nombre = "Abogado";
 		String opcion = "Clientes";
 
 		try {
