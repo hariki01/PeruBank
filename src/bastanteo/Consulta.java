@@ -13,6 +13,7 @@ public class Consulta extends AdmBastanteos {
 			AdmClientes admcli, AdmRepresentantes admrep, AdmBastanteos admbast) 
 			throws ClienteException {
 		
+		
 		AdmBastanteos resultBastanteos = new AdmBastanteos();
 		
 		String codCliente = admcli.clienteExisteRuc(RUC);

@@ -15,14 +15,14 @@ public class AdmBastanteos {
 
 	public void registrarBastanteo(String codigo, String codigopoder,
 			String grupo, String codcli, String intervencion, double importe,
-			String fechavenc) throws ClienteException {
+			String fechavenc,String codusu) throws ClienteException {
 
 		validarDatos(codigo, codigopoder, grupo, codcli, intervencion, importe,
-				fechavenc);
+				fechavenc,codusu);
 		validarBastanteo(codigopoder, grupo, codcli, intervencion);
 		// Guardando en poder grupo
 		Bastanteo nuevoBastanteo = new Bastanteo(codigo, codigopoder, grupo,
-				codcli, intervencion, importe, fechavenc);
+				codcli, intervencion, importe, fechavenc,codusu);
 
 		// añaden a la lista
 		bastanteos.add(nuevoBastanteo);
@@ -53,7 +53,7 @@ public class AdmBastanteos {
 	}
 	
 	private void validarDatos(String codigo, String codigopoder, String grupo,
-			String codcli, String intervencion, double importe, String fechavenc)
+			String codcli, String intervencion, double importe, String fechavenc,String codusu)
 			throws ClienteException {
 		String mensaje = "";
 		if (codigo.equals(""))
@@ -70,6 +70,8 @@ public class AdmBastanteos {
 			mensaje += "\nImporte no puede ser 0";
 		if (fechavenc.equals(""))
 			mensaje += "\nFecha de Vencimiento no puede ser vacio";
+		if (codusu.equals(""))
+			mensaje += "\nUsuario no puede ser vacio";
 		if (!mensaje.equals(""))
 			throw new ClienteException(mensaje);
 	}

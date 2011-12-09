@@ -15,18 +15,39 @@ public class AdmBastanteoTest {
 
 	AdmClientes admcli = new AdmClientes();
 	AdmPoderes admpoder = new AdmPoderes();
+	AdmUsuario admusuario = new AdmUsuario();
+
+	String codUsuario = "";
+	AdmLlenarDatos adm = new AdmLlenarDatos();
 	
+	@Before
+	public void ValidarUsuario() throws ClienteException {
+		
+		String opcion = "Registro de Bastanteo";
+		String usuario = "hbruno";
+		String clave = "2210";
+
+		admusuario.logon(usuario, clave);
+		admusuario.validarAcceso(usuario, clave, opcion);
+		codUsuario = admusuario.codigoUsuario(usuario, clave);
+
+	}
+
+
 	@Before
 	public void LlenarDatos() throws ClienteException {
 
-		AdmLlenarDatos adm = new AdmLlenarDatos();
 		admcli = adm.registrarVariosClientes();
 		admpoder = adm.registrarVariosPoderes();
-	}
+		admusuario = adm.registrarVariosUsuarios();
+		
+	 }
 
-	@Test//(expected=ClienteException.class)
+
+	@Test
 	public void siIngresoDatosDeberiaRegistrarBastanteoaSolafirma()
 			throws ClienteException, ParseException {
+		
 
 		// preparamos el ejemplo
 		String codigo = "001";
@@ -41,7 +62,7 @@ public class AdmBastanteoTest {
 		String codigopoder = "";
 		String codcli = "";
 
-	//	LlenarDatos();
+		// LlenarDatos();
 
 		try {
 
@@ -50,12 +71,11 @@ public class AdmBastanteoTest {
 
 			admpoder.validarPoder(nombrepoder, tiposervicio);
 			codigopoder = admpoder.buscarcodigoPoder(nombrepoder, tiposervicio);
-			
 
 			AdmBastanteos admbastanteo = new AdmBastanteos();
 
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc);
+					intervencion, importe, fechavenc,codUsuario);
 			assertEquals(codcli, "CL001");
 			assertEquals(codigopoder, "CHCO");
 			assertNotNull(admbastanteo);
@@ -84,7 +104,7 @@ public class AdmBastanteoTest {
 
 		String codigopoder = "";
 		String codcli = "";
-//		LlenarDatos();
+		// LlenarDatos();
 
 		try {
 
@@ -99,9 +119,9 @@ public class AdmBastanteoTest {
 			AdmBastanteos admbastanteo = new AdmBastanteos();
 
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc);
+					intervencion, importe, fechavenc,codUsuario);
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc);
+					intervencion, importe, fechavenc,codUsuario);
 
 			assertEquals(codcli, "CL001");
 			assertEquals(codigopoder, "CHCO");
@@ -129,11 +149,11 @@ public class AdmBastanteoTest {
 
 		String codigopoder = "";
 		String codcli = "";
-		
-	//	LlenarDatos();
+
+		// LlenarDatos();
 
 		try {
-		
+
 			admcli.validarCliente(nombrecli);
 			codcli = admcli.clienteexisteCodigo(nombrecli);
 
@@ -145,7 +165,7 @@ public class AdmBastanteoTest {
 
 			grupo = "A";
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc);
+					intervencion, importe, fechavenc,codUsuario);
 
 			grupo = "B";
 			admcom.registrarCombinacion(codigo, grupo, intervencion);
@@ -180,7 +200,7 @@ public class AdmBastanteoTest {
 		String codigopoder = "";
 		String codcli = "";
 
-	//	LlenarDatos();
+		// LlenarDatos();
 
 		try {
 
@@ -195,7 +215,7 @@ public class AdmBastanteoTest {
 
 			grupo = "A";
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc);
+					intervencion, importe, fechavenc,codUsuario);
 
 			grupo = "B";
 			admcom.registrarCombinacion(codigo, grupo, intervencion);
@@ -204,7 +224,7 @@ public class AdmBastanteoTest {
 			admcom.registrarCombinacion(codigo, grupo, intervencion);
 
 			grupo = "C";
-		    admcom.registrarCombinacion(codigo, grupo, intervencion);
+			admcom.registrarCombinacion(codigo, grupo, intervencion);
 
 			assertEquals(codcli, "CL001");
 			assertEquals(codigopoder, "CHCO");

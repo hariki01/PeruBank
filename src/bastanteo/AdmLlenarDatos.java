@@ -58,12 +58,13 @@ public class AdmLlenarDatos {
 		return admpoder;
 
 	}
-	
-	public AdmRepresentantes registrarVariosRepresentantes() throws ClienteException{
-		
+
+	public AdmRepresentantes registrarVariosRepresentantes()
+			throws ClienteException {
+
 		AdmRepresentantes admrep = new AdmRepresentantes();
-		
-		//1. Representante
+
+		// 1. Representante
 		String codigo = "REP001";
 		String nombres = "Luis Carlos";
 		String apellidos = "Rodriguez Rojas";
@@ -73,9 +74,10 @@ public class AdmLlenarDatos {
 		String grupo = "A";
 		String codcli = "CL001";
 
-		admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc, ndoc, cargo, grupo, codcli);
-		
-		//2. Representante
+		admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc,
+				ndoc, cargo, grupo, codcli);
+
+		// 2. Representante
 		codigo = "REP002";
 		nombres = "Jose";
 		apellidos = "Diaz Diaz";
@@ -85,30 +87,93 @@ public class AdmLlenarDatos {
 		grupo = "B";
 		codcli = "CL002";
 
-		admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc, ndoc, cargo, grupo, codcli);
-		
-		return admrep; 
+		admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc,
+				ndoc, cargo, grupo, codcli);
+
+		return admrep;
 	}
 
 	public AdmBastanteos registrarVariosBastanteos() throws ClienteException {
-		
+
 		AdmBastanteos admbastanteo = new AdmBastanteos();
-		
-		//1. Bastanteo
+
+		// 1. Bastanteo
 		String codigo = "001";
 		String codigopoder = "CHCO";
-		//String nombrepoder = "Cobro de Cheques";
-		//String tiposervicio = "Activo";
+		// String nombrepoder = "Cobro de Cheques";
+		// String tiposervicio = "Activo";
 		String grupo = "A";
-		//String nombrecli = "Extreme IT Solutions";
+		// String nombrecli = "Extreme IT Solutions";
 		String codcli = "CL001";
 		String intervencion = "A Sola Firma";
 		double importe = 500.00;
 		String fechavenc = "05/12/2011";
+		String codusu = "U002";
 
-		admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli, intervencion, importe, fechavenc);
-		
+		admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
+				intervencion, importe, fechavenc,codusu);
+
 		return admbastanteo;
 
 	}
+
+	public AdmUsuario registrarVariosUsuarios() throws ClienteException {
+
+		AdmUsuario admusuario = new AdmUsuario();
+
+		String codigo = "U001";
+		String nombre = "HANS ESPIRITU";
+		String documento = "12345678";
+		String email = "HANS@HOTMAIL.COM";
+		String user = "hespiritu";
+		String clave = "abc";
+		String rol = "Administrador";
+
+		admusuario.registrarUsuario(codigo, nombre, documento, email, user,
+				clave, rol);
+
+		codigo = "U002";
+		nombre = "Harold Bruno";
+		documento = "43626862";
+		email = "harold_jbc@hotmail.com";
+		user = "hbruno";
+		clave = "2210";
+		rol = "Abogado";
+
+		admusuario.registrarUsuario(codigo, nombre, documento, email, user,
+				clave, rol);
+
+		codigo = "U003";
+		nombre = "Jorge Alcantara";
+		documento = "25980125";
+		email = "jorvil_06@hotmail.com";
+		user = "jalcantara";
+		clave = "8520";
+		rol = "Usuario";
+
+		admusuario.registrarUsuario(codigo, nombre, documento, email, user,
+				clave, rol);
+		
+		//registro roles
+		
+		String nombreRol = "Abogado";
+		String opcion = "Registro de Clientes";
+		
+		admusuario.RegistrarRol(nombreRol, opcion);
+
+		nombreRol = "Abogado";
+		opcion = "Registro de Representantes";
+		
+		admusuario.RegistrarRol(nombreRol, opcion);
+
+		nombreRol = "Abogado";
+		opcion = "Registro de Bastanteo";
+		
+		admusuario.RegistrarRol(nombreRol, opcion);
+
+
+		return admusuario;
+
+	}
+
 }

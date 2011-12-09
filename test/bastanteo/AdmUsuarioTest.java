@@ -10,16 +10,17 @@ public class AdmUsuarioTest {
 	public void ejecutarLogon() throws ClienteException {
 
 		// [1] Datos de ejemplo para Usuario
+		String codigo = "U001";
 		String nombre = "HANS ESPIRITU";
 		String documento = "12345678";
 		String email = "HANS@HOTMAIL.COM";
 		String user = "hespiritu";
 		String clave = "abc";
-		String rol = "Administrador";
-
+		String rol = "Usuario";
+        String opcion_ingreso = "Registro de Bastanteo";
 		// [2] Datos de ejemplo para Rol
-		String nombreRol = "ADMINISTRADOR";
-		String opcion = "BASTANTEO";
+		String nombreRol = "Usuario";
+		String opcion = "Registro de Bastanteo";
 
 		boolean accesoUsuarioConcedido = false;
 
@@ -29,15 +30,17 @@ public class AdmUsuarioTest {
 			AdmUsuario adm = new AdmUsuario();
 
 			// Ejecutamos registro de nuevo usuario
-			adm.registrarUsuario(nombre, documento, email, user, clave, rol);
+			adm.registrarUsuario(codigo, nombre, documento, email, user, clave,
+					rol);
 
 			// [02] Roles:
 			// Ejecutamos registro de nuevo Rol
 			adm.RegistrarRol(nombreRol, opcion);
 
 			// [03] Ejecutamos el Logon de usuario
-			accesoUsuarioConcedido = adm.logon(user, clave, opcion);
-
+			adm.logon(user, clave);
+			adm.validarAcceso(user, clave, opcion_ingreso);
+			
 			assertNotNull(adm);
 		}
 
@@ -50,6 +53,7 @@ public class AdmUsuarioTest {
 	@Test
 	public void siRegistrarUsuario() throws ClienteException {
 
+		String codigo = "U001";
 		String nombre = "HANS ESPIRITU";
 		String documento = "12345678";
 		String email = "HANS@HOTMAIL.COM";
@@ -62,8 +66,8 @@ public class AdmUsuarioTest {
 			AdmUsuario admUsuario = new AdmUsuario();
 
 			// ejecutar
-			admUsuario.registrarUsuario(nombre, documento, email, user, clave,
-					rol);
+			admUsuario.registrarUsuario(codigo, nombre, documento, email, user,
+					clave, rol);
 
 			// Verificar
 			assertNotNull(admUsuario);
@@ -79,8 +83,8 @@ public class AdmUsuarioTest {
 	@Test
 	public void siRegistrarRol() throws ClienteException {
 
-		String nombre = "Abogado";
-		String opcion = "Clientes";
+		String nombre = "Usuario";
+		String opcion = "Registro de Clientes";
 
 		try {
 

@@ -113,4 +113,9 @@ public class AdmRepresentantes {
 		return grupo;
 	}
 
+	public Representante buscarRepresentanteXCodigo(String idRepresentante) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

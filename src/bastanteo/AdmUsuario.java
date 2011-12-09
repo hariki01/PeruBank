@@ -16,18 +16,19 @@ public class AdmUsuario {
 
 	}
 
-	public void registrarUsuario(String nombre, String documento, String email,
-			String user, String clave, String rol) throws ClienteException {
+	public void registrarUsuario(String codusu, String nombre,
+			String documento, String email, String user, String clave,
+			String rol) throws ClienteException {
 		// Validamos los datos de usuario
-		validarDatosUsuario(nombre, documento, email, user, clave, rol);
+		validarDatosUsuario(codusu, nombre, documento, email, user, clave, rol);
 
 		// Validadmos que no exista un usuario con el mismo
 		// "documento, email, user" previamente
-		validarDuplicado(documento, email, user);
+		validarDuplicado(codusu, documento, email, user);
 
 		// Creamos un usuario
-		Usuario newUsuario = new Usuario(nombre, documento, email, user, clave,
-				rol);
+		Usuario newUsuario = new Usuario(codusu, nombre, documento, email,
+				user, clave, rol);
 
 		usuarios.add(newUsuario);
 
@@ -44,12 +45,14 @@ public class AdmUsuario {
 
 	}
 
-	private void validarDatosUsuario(String nombre, String documento,
-			String email, String user, String clave, String rol)
-			throws ClienteException {
+	private void validarDatosUsuario(String codusu, String nombre,
+			String documento, String email, String user, String clave,
+			String rol) throws ClienteException {
 		String mensaje = "";
+		if (codusu.equals(""))
+			mensaje += "Codigo de Usuario no puede ser vacio";
 		if (nombre.equals(""))
-			mensaje += "Nombre de Usuario no puede ser vacio";
+			mensaje += "\nNombre de Usuario no puede ser vacio";
 		if (documento.equals(""))
 			mensaje += "\nDocumento no puede ser vacio";
 		if (email.equals(""))
@@ -64,21 +67,23 @@ public class AdmUsuario {
 			throw new ClienteException(mensaje);
 	}
 
-	private void validarDuplicado(String documento, String email, String user)
-			throws ClienteException {
+	private void validarDuplicado(String codusu, String documento,
+			String email, String user) throws ClienteException {
 
-		if (usuarioExiste(documento, email, user))
+		if (usuarioExiste(codusu, documento, email, user))
 			throw new ClienteException(
 					"Usuario Ya Existe!, Favor de intentar nuevamente.");
 	}
 
-	private boolean usuarioExiste(String documento, String email, String user) {
+	private boolean usuarioExiste(String codusu, String documento,
+			String email, String user) {
 		boolean existe = false;
 
 		for (Usuario usuario : usuarios)
 			if (usuario.getDocumento().equals(documento)
 					|| usuario.getEmail().equals(email)
-					|| usuario.getUser().equals(user))
+					|| usuario.getUser().equals(user)
+					|| usuario.getCodusu().equals(codusu))
 				existe = true;
 		return existe;
 	}
@@ -104,45 +109,30 @@ public class AdmUsuario {
 	// ----------------------------------------------------------------------------------------------
 	// Ingreso al sistema
 	// ----------------------------------------------------------------------------------------------
-	public boolean logon(String user, String clave, String opcion)
-			throws ClienteException {
+	public void logon(String user, String clave) throws ClienteException {
 		String mensaje = "";
-		Usuario usuario = encuentraUsuario(user, clave);
-
-		if (!usuario.getNombre().equals("")) {
-			// System.out.println("El usuario: " + user);
-
-			for (Rol rol : roles) {
-
-				if (rol.getNombre().equals(usuario.getRol())) {
-					// System.out.println("Tiene acceso a la opcion:" +
-					// rol.getOpcion());
-					return true;
-				}
-			}
-
-		} else {
-			mensaje = "El usuario: " + user + "o la clave: " + clave;
-			mensaje += "No Existen! Favor de intentar nuevamente";
+		String codigo = "";
+		codigo = codigoUsuario(user, clave);
+		
+		
+		if (codigo.equals("")) {
+			mensaje = "El usuario: " + user + " o la clave: " + clave;
+			mensaje += " No Existen! Favor de intentar nuevamente";
 			throw new ClienteException(mensaje);
 		}
 
-		return false;
 	}
 
 	// ----------------------------------------------------------------------------------------------
 	// Validación de usuario
 	// ----------------------------------------------------------------------------------------------
-	public Usuario encuentraUsuario(String user, String clave) {
-		Usuario getUsuario = new Usuario();
-		for (Usuario usuario : usuarios) {
-			if (usuario.getUser().equals(user)
-					&& usuario.getClave().equals(clave)) {
-				return usuario;
-			}
-		}
 
-		return getUsuario;
+	public Usuario encuentraUsuario(String user, String clave) {
+		for (Usuario usuario : usuarios)
+			if (usuario.getUser().equals(user)
+					&& usuario.getClave().equals(clave))
+				return usuario;
+		return null;
 	}
 
 	public String codigoUsuario(String user, String clave) {
@@ -150,8 +140,46 @@ public class AdmUsuario {
 		for (Usuario usuario : usuarios)
 			if (usuario.getUser().equals(user)
 					&& usuario.getClave().equals(clave))
-				codigo = usuario.getUser();
+				codigo = usuario.getCodusu();
 
 		return codigo;
 	}
+
+	public String rolUsuario(String user, String clave) {
+		String rol = "";
+		for (Usuario usuario : usuarios)
+			if (usuario.getUser().equals(user)
+					&& usuario.getClave().equals(clave))
+				rol = usuario.getRol();
+
+		return rol;
+	}
+
+	public boolean devuelveAcceso(String user, String clave, String opcion) {
+		String perfil = "";
+		perfil = rolUsuario(user, clave);
+		boolean acceso = false;
+
+		if (perfil == "Administrador") {
+			acceso = true;
+		} else {
+			for (Rol rol : roles) {
+				if (perfil.equals(rol.getNombre())
+						&& opcion.equals(rol.getOpcion()))
+					acceso = true;
+
+			}
+		}
+		return acceso;
+	}
+
+	public void validarAcceso(String user, String clave, String opcion)
+			throws ClienteException {
+		boolean acceso = false;
+		acceso = devuelveAcceso(user, clave, opcion);
+		if (acceso == false)
+			throw new ClienteException("No tiene acceso para esta opcion");
+
+	}
+
 }

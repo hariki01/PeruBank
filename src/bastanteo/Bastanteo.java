@@ -9,13 +9,13 @@ public class Bastanteo {
 	private String grupo;
 	private String codcli;
 	private String intervencion;
-	double importe;
+	private double importe;
 	private String fechavenc;
-	
+	private String codusu;
 	
 
 	public Bastanteo(String codigo, String codigopoder, String grupo,
-			String codcli, String intervencion, double importe, String fechavenc) {
+			String codcli, String intervencion, double importe, String fechavenc,String codusu) {
 		super(); // el super siempre va en primer lugar
 		this.codigo = codigo;
 		this.codigopoder = codigopoder;
@@ -24,7 +24,7 @@ public class Bastanteo {
 		this.intervencion = intervencion;
 		this.importe = importe;
 		this.fechavenc = fechavenc;
-		
+		this.codusu = codusu;
 		
 	}
 
@@ -63,6 +63,9 @@ public class Bastanteo {
 		return fechavenc;
 	}
 
-	
+	public String getCodusu() {
+
+		return codusu;
+	}	
 
 }

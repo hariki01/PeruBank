@@ -2,7 +2,7 @@ package bastanteo;
 
 public class Usuario {
 
-	private String codUsu;
+	private String codusu;
 	private String nombre;
 	private String documento;
 	private String email;
