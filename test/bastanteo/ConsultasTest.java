@@ -19,11 +19,11 @@ public class ConsultasTest {
 	AdmRepresentantes admrep = new AdmRepresentantes();
 	AdmBastanteos admbastanteo = new AdmBastanteos();
 	AdmUsuario admusuario = new AdmUsuario();
-	String codUsuario ="";
-	
+	String codUsuario = "";
+
 	@Before
 	public void ValidarUsuario() throws ClienteException {
-		
+
 		String opcion = "Consulta de Poderes";
 		String usuario = "lflores";
 		String clave = "123456";
@@ -33,7 +33,7 @@ public class ConsultasTest {
 		codUsuario = admusuario.codigoUsuario(usuario, clave);
 
 	}
-	
+
 	@Before
 	public void llenarDatos() throws ClienteException {
 		admcli = adm.registrarVariosClientes();
@@ -42,17 +42,18 @@ public class ConsultasTest {
 		admbastanteo = adm.registrarVariosBastanteos();
 		admusuario = adm.registrarVariosUsuarios();
 	}
-	
+
 	@Test
-	public void deberiaConsultarPoderesYRetornarBastanteo() throws ClienteException {
+	public void deberiaConsultarPoderesYRetornarBastanteo()
+			throws ClienteException {
 
 		Consulta consulta = new Consulta();
 		AdmBastanteos respuesta = null;
-		
-		respuesta = consulta.ConsultaPoderes("12232720907", "REP001", "A", admcli, admrep, admbastanteo);
-		
-		
-		assertEquals(1,respuesta.bastanteos.size());
+
+		respuesta = consulta.ConsultaPoderes("12232720907", "REP001", "A",
+				admcli, admrep, admbastanteo);
+
+		assertEquals(1, respuesta.bastanteos.size());
 		assertNotNull(respuesta);
 	}
 
@@ -61,10 +62,11 @@ public class ConsultasTest {
 
 		Consulta consulta = new Consulta();
 		AdmBastanteos respuesta = null;
-		
-		respuesta = consulta.ConsultaPoderes("12232X0X", "REP001", "A", admcli, admrep, admbastanteo);
-		
+
+		respuesta = consulta.ConsultaPoderes("12232X0X", "REP001", "A", admcli,
+				admrep, admbastanteo);
+
 		assertNull(respuesta);
 	}
-	
+
 }

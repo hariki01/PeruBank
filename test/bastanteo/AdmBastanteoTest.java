@@ -19,10 +19,10 @@ public class AdmBastanteoTest {
 
 	String codUsuario = "";
 	AdmLlenarDatos adm = new AdmLlenarDatos();
-	
+
 	@Before
 	public void ValidarUsuario() throws ClienteException {
-		
+
 		String opcion = "Registro de Bastanteo";
 		String usuario = "hbruno";
 		String clave = "2210";
@@ -33,21 +33,18 @@ public class AdmBastanteoTest {
 
 	}
 
-
 	@Before
 	public void LlenarDatos() throws ClienteException {
 
 		admcli = adm.registrarVariosClientes();
 		admpoder = adm.registrarVariosPoderes();
 		admusuario = adm.registrarVariosUsuarios();
-		
-	 }
 
+	}
 
 	@Test
 	public void siIngresoDatosDeberiaRegistrarBastanteoaSolafirma()
 			throws ClienteException, ParseException {
-		
 
 		// preparamos el ejemplo
 		String codigo = "001";
@@ -75,7 +72,7 @@ public class AdmBastanteoTest {
 			AdmBastanteos admbastanteo = new AdmBastanteos();
 
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc,codUsuario);
+					intervencion, importe, fechavenc, codUsuario);
 			assertEquals(codcli, "CL001");
 			assertEquals(codigopoder, "CHCO");
 			assertNotNull(admbastanteo);
@@ -119,9 +116,9 @@ public class AdmBastanteoTest {
 			AdmBastanteos admbastanteo = new AdmBastanteos();
 
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc,codUsuario);
+					intervencion, importe, fechavenc, codUsuario);
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc,codUsuario);
+					intervencion, importe, fechavenc, codUsuario);
 
 			assertEquals(codcli, "CL001");
 			assertEquals(codigopoder, "CHCO");
@@ -165,7 +162,7 @@ public class AdmBastanteoTest {
 
 			grupo = "A";
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc,codUsuario);
+					intervencion, importe, fechavenc, codUsuario);
 
 			grupo = "B";
 			admcom.registrarCombinacion(codigo, grupo, intervencion);
@@ -215,7 +212,7 @@ public class AdmBastanteoTest {
 
 			grupo = "A";
 			admbastanteo.registrarBastanteo(codigo, codigopoder, grupo, codcli,
-					intervencion, importe, fechavenc,codUsuario);
+					intervencion, importe, fechavenc, codUsuario);
 
 			grupo = "B";
 			admcom.registrarCombinacion(codigo, grupo, intervencion);

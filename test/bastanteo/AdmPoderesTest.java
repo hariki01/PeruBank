@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AdmPoderesTest {
-	
+
 	AdmUsuario admusuario = new AdmUsuario();
 
 	String codUsuario = "";
@@ -30,7 +30,6 @@ public class AdmPoderesTest {
 		admusuario = adm.registrarVariosUsuarios();
 	}
 
-
 	@Test
 	public void siIngresoDatosDeberiaRegistrarPoderes() throws ClienteException {
 
@@ -45,13 +44,13 @@ public class AdmPoderesTest {
 			nombre = "Cobro de Cheques";
 			tipoProducto = "Activo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto, codUsuario);
 
 			codigo = "EFRE";
 			nombre = "Retiro en Efectivo";
 			tipoProducto = "Pasivo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto, codUsuario);
 
 			assertNotNull(admpoder);
 
@@ -78,13 +77,13 @@ public class AdmPoderesTest {
 			nombre = "";
 			tipoProducto = "Activo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto, codUsuario);
 
 			codigo = "EFRE";
 			nombre = "Retiro en Efectivo";
 			tipoProducto = "Pasivo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto, codUsuario);
 
 			assertNotNull(admpoder);
 
@@ -111,13 +110,13 @@ public class AdmPoderesTest {
 			nombre = "Cobro de Cheques";
 			tipoProducto = "Activo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto, codUsuario);
 
 			codigo = "CHCO";
 			nombre = "Cobro de Cheques";
 			tipoProducto = "Activo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto, codUsuario);
 
 			assertNotNull(admpoder);
 
