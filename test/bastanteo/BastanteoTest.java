@@ -24,6 +24,13 @@ public class BastanteoTest {
 
 	}
 	
+	@Before
+	public void LlenarDatos() throws ClienteException {
+
+		admusuario = adm.registrarVariosUsuarios();
+		
+	 }
+	
 	@Test
 	public void bastanteoDeberiaCrearseConDatosIniciales(){
 	

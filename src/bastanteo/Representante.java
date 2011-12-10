@@ -10,11 +10,13 @@ public class Representante {
 	private String cargo;
 	private String grupo;
 	private String codcli;
+	private String codusua;
 
-	public Representante(String codigo,String nombres, String apellidos, String tipodoc,
-			String ndoc, String cargo, String grupo, String codcli) {
+	public Representante(String codigo, String nombres, String apellidos,
+			String tipodoc, String ndoc, String cargo, String grupo,
+			String codcli, String codusua) {
 		super(); // el super siempre va en primer lugar
-		this.codigo= codigo;
+		this.codigo = codigo;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.tipodoc = tipodoc;
@@ -22,11 +24,12 @@ public class Representante {
 		this.cargo = cargo;
 		this.grupo = grupo;
 		this.codcli = codcli;
+		this.codusua = codusua;
 
 	}
-	
-	public String getCodigo(){
-		
+
+	public String getCodigo() {
+
 		return codigo;
 	}
 
@@ -63,6 +66,11 @@ public class Representante {
 	public String getCodcli() {
 
 		return codcli;
+	}
+
+	public String getCodusua() {
+
+		return codusua;
 	}
 
 }

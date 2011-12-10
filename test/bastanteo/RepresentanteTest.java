@@ -2,9 +2,33 @@ package bastanteo;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class RepresentanteTest {
+	
+	AdmUsuario admusuario = new AdmUsuario();
+
+	String codUsuario = "";
+	AdmLlenarDatos adm = new AdmLlenarDatos();
+
+	@Before
+	public void ValidarUsuario() throws ClienteException {
+
+		String opcion = "Registro de Representantes";
+		String usuario = "hbruno";
+		String clave = "2210";
+
+		admusuario.logon(usuario, clave);
+		admusuario.validarAcceso(usuario, clave, opcion);
+		codUsuario = admusuario.codigoUsuario(usuario, clave);
+
+	}
+
+	@Before
+	public void LlenarDatos() throws ClienteException {
+		admusuario = adm.registrarVariosUsuarios();
+	}
 
 	@Test
 	public void representanteDeberiaCrearseConDatosIniciales() throws ClienteException {
@@ -20,7 +44,8 @@ public class RepresentanteTest {
 		String codcli = "CL001";
 		
 		//Ejecuto el escenario
-        Representante representante = new Representante(codigo,nombres, apellidos,tipodoc,ndoc, cargo, grupo,codcli);
+        Representante representante = new Representante(codigo,nombres, apellidos,
+        tipodoc,ndoc, cargo, grupo,codcli,codUsuario);
 		
 		
 		//Verifico

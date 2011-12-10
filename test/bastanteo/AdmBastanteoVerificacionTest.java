@@ -18,14 +18,31 @@ public class AdmBastanteoVerificacionTest {
 	AdmPoderes admpoder = new AdmPoderes();
 	AdmRepresentantes admrep = new AdmRepresentantes();
 	AdmBastanteos admbastanteo = new AdmBastanteos();
+	AdmUsuario admusuario = new AdmUsuario();
+
+	String codUsuario = "";
+	AdmLlenarDatos adm = new AdmLlenarDatos();
+
+	@Before
+	public void ValidarUsuario() throws ClienteException {
+
+		String opcion = "Verificacion de Poderes";
+		String usuario = "lflores";
+		String clave = "123456";
+
+		admusuario.logon(usuario, clave);
+		admusuario.validarAcceso(usuario, clave, opcion);
+		codUsuario = admusuario.codigoUsuario(usuario, clave);
+
+	}
 
 	@Before
 	public void llenarDatos() throws ClienteException {
-		AdmLlenarDatos adm = new AdmLlenarDatos();
 		admcli = adm.registrarVariosClientes();
 		admpoder = adm.registrarVariosPoderes();
 		admrep = adm.registrarVariosRepresentantes();
 		admbastanteo = adm.registrarVariosBastanteos();
+		admusuario = adm.registrarVariosUsuarios();
 	}
 
 	public void ValidarEstadoFecha(boolean sw) throws ClienteException {
@@ -155,7 +172,6 @@ public class AdmBastanteoVerificacionTest {
 			sw = admbastanteo.retornoFecha(date, fecha);
 
 			ValidarEstadoFecha(sw);
-			
 
 		} catch (ClienteException ex) {
 			System.out.println(ex);
@@ -186,7 +202,7 @@ public class AdmBastanteoVerificacionTest {
 		String fechaVenc = "";
 		Date fechaVencimiento;
 		double importe_asignar = 1000.00;
-		
+
 		try {
 			// Cliente
 			admcli.validarClienteRuc(ruc);
@@ -208,13 +224,12 @@ public class AdmBastanteoVerificacionTest {
 			// validar con los valores de retorno
 			String validar_intervencion = "A Sola Firma";
 
-			double importe_destino=admbastanteo.bastanteoExisteImporte(codBast);
+			double importe_destino = admbastanteo
+					.bastanteoExisteImporte(codBast);
 			admbastanteo.validarImporte(importe_asignar, importe_destino);
-			
+
 			assertEquals(grupoBastanteo, grupoRep);
 			assertEquals(intervencion, validar_intervencion);
-
-
 
 		} catch (ClienteException ex) {
 			System.out.println(ex);

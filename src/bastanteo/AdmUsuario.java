@@ -70,9 +70,11 @@ public class AdmUsuario {
 	private void validarDuplicado(String codusu, String documento,
 			String email, String user) throws ClienteException {
 
-		if (usuarioExiste(codusu, documento, email, user))
-			throw new ClienteException(
-					"Usuario Ya Existe!, Favor de intentar nuevamente.");
+		boolean existe = false;
+		existe =usuarioExiste(codusu, documento, email, user);		
+		
+		if (existe == true)
+			throw new ClienteException("Usuario Ya Existe!, Favor de intentar nuevamente.");
 	}
 
 	private boolean usuarioExiste(String codusu, String documento,

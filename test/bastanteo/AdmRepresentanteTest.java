@@ -3,17 +3,35 @@ package bastanteo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class AdmRepresentanteTest {
 
 	AdmClientes admcli = new AdmClientes();
+	AdmUsuario admusuario = new AdmUsuario();
+	String codUsuario = "";
+	AdmLlenarDatos adm = new AdmLlenarDatos();
 
-	
-	public void LlamarClientes() throws ClienteException {
+	@Before
+	public void ValidarUsuario() throws ClienteException {
 
-		AdmLlenarDatos adm = new AdmLlenarDatos();
+		String opcion = "Registro de Representantes";
+		String usuario = "hbruno";
+		String clave = "2210";
+
+		admusuario.logon(usuario, clave);
+		admusuario.validarAcceso(usuario, clave, opcion);
+		codUsuario = admusuario.codigoUsuario(usuario, clave);
+
+	}
+
+	@Before
+	public void LlenarDatos() throws ClienteException {
+
+		admusuario = adm.registrarVariosUsuarios();
 		admcli = adm.registrarVariosClientes();
+
 	}
 
 	@Test
@@ -21,8 +39,6 @@ public class AdmRepresentanteTest {
 			throws ClienteException {
 
 		try {
-
-			LlamarClientes();
 
 			// preparamos el ejemplo
 			String codigo = "REP001";
@@ -40,7 +56,7 @@ public class AdmRepresentanteTest {
 
 			AdmRepresentantes admrep = new AdmRepresentantes();
 			admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc,
-					ndoc, cargo, grupo, codcli);
+					ndoc, cargo, grupo, codcli, codUsuario);
 
 			assertEquals(codcli, "CL002");
 			assertNotNull(admrep);
@@ -58,8 +74,6 @@ public class AdmRepresentanteTest {
 
 		try {
 
-			LlamarClientes();
-
 			// preparamos el ejemplo
 			String codigo = "REP001";
 			String nombres = "Luis Carlos";
@@ -76,7 +90,7 @@ public class AdmRepresentanteTest {
 
 			AdmRepresentantes admrep = new AdmRepresentantes();
 			admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc,
-					ndoc, cargo, grupo, codcli);
+					ndoc, cargo, grupo, codcli, codUsuario);
 
 			assertEquals(codcli, "CL002");
 			assertNotNull(admrep);
@@ -94,8 +108,6 @@ public class AdmRepresentanteTest {
 
 		try {
 
-			LlamarClientes();
-
 			// preparamos el ejemplo
 			String codigo = "REP001";
 			String nombres = "Luis Carlos";
@@ -112,7 +124,7 @@ public class AdmRepresentanteTest {
 
 			AdmRepresentantes admrep = new AdmRepresentantes();
 			admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc,
-					ndoc, cargo, grupo, codcli);
+					ndoc, cargo, grupo, codcli, codUsuario);
 
 			assertEquals(codcli, "CL002");
 			assertNotNull(admrep);
@@ -130,8 +142,6 @@ public class AdmRepresentanteTest {
 
 		try {
 
-			LlamarClientes();
-            
 			// Primer representante
 			// preparamos el ejemplo
 			String codigo = "REP001";
@@ -149,9 +159,9 @@ public class AdmRepresentanteTest {
 
 			AdmRepresentantes admrep = new AdmRepresentantes();
 			admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc,
-					ndoc, cargo, grupo, codcli);
+					ndoc, cargo, grupo, codcli, codUsuario);
 			admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc,
-					ndoc, cargo, grupo, codcli);
+					ndoc, cargo, grupo, codcli, codUsuario);
 
 			assertEquals(codcli, "CL002");
 			assertNotNull(admrep);

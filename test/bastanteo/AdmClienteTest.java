@@ -1,9 +1,34 @@
 package bastanteo;
 
 import static org.junit.Assert.assertNotNull;
+
+import org.junit.Before;
 import org.junit.Test;
 
 public class AdmClienteTest {
+
+	AdmUsuario admusuario = new AdmUsuario();
+
+	String codUsuario = "";
+	AdmLlenarDatos adm = new AdmLlenarDatos();
+
+	@Before
+	public void ValidarUsuario() throws ClienteException {
+
+		String opcion = "Registro de Clientes";
+		String usuario = "jalcantara";
+		String clave = "8520";
+
+		admusuario.logon(usuario, clave);
+		admusuario.validarAcceso(usuario, clave, opcion);
+		codUsuario = admusuario.codigoUsuario(usuario, clave);
+
+	}
+
+	@Before
+	public void LlenarDatos() throws ClienteException {
+		admusuario = adm.registrarVariosUsuarios();
+	}
 
 	@Test
 	public void siIngresoDatosDeberiaRegistrarCliente() throws ClienteException {
@@ -21,7 +46,7 @@ public class AdmClienteTest {
 
 			// ejecutar
 			adm.registrarCliente(codigo, ruc, razonSocial, fechaInicio,
-					tipoEmpresa, empleados);
+					tipoEmpresa, empleados,codUsuario);
 
 			Cliente cliente = adm.buscarCliente(codigo);
 			// Verificar
@@ -51,7 +76,7 @@ public class AdmClienteTest {
 
 			// ejecutar
 			adm.registrarCliente(codigo, ruc, razonSocial, fechaInicio,
-					tipoEmpresa, empleados);
+					tipoEmpresa, empleados,codUsuario);
 
 		}
 
@@ -79,11 +104,11 @@ public class AdmClienteTest {
 			// ejecutar
 			// el primero se ejecuta sin problemas
 			adm.registrarCliente(codigo, ruc, razonSocial, fechaInicio,
-					tipoEmpresa, empleados);
+					tipoEmpresa, empleados,codUsuario);
 
 			// el segundo debe arrojar la exception
 			adm.registrarCliente(codigo, ruc, razonSocial, fechaInicio,
-					tipoEmpresa, empleados);
+					tipoEmpresa, empleados,codUsuario);
 
 		}
 

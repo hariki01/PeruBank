@@ -13,18 +13,20 @@ public class AdmRepresentantes {
 	}
 
 	public void registrarRepresentante(String codigo,String nombres, String apellidos,
-			String tipodoc, String ndoc, String cargo, String grupo,String codcli)
+			String tipodoc, String ndoc, String cargo, String grupo,String codcli,
+			String codusua)
 			throws ClienteException {
 
 		// validar datos
-		validarDatosrep(codigo,nombres, apellidos, tipodoc, ndoc, cargo, grupo,codcli);
+		validarDatosrep(codigo,nombres, apellidos, tipodoc, ndoc, cargo, grupo,codcli,
+				        codusua);
 		
 		//validar representante
 		validarDuplicado(tipodoc,ndoc);
 		
 
 		Representante rep = new Representante(codigo,nombres, apellidos, tipodoc,
-				ndoc, cargo, grupo,codcli);
+				ndoc, cargo, grupo,codcli,codusua);
 
 		// agregando los valores al areglo
 
@@ -52,7 +54,8 @@ public class AdmRepresentantes {
 	}
 
 	private void validarDatosrep(String codigo,String nombres, String apellidos,
-			String tipodoc, String ndoc, String cargo, String grupo,String codcli)
+			String tipodoc, String ndoc, String cargo, String grupo,String codcli,
+			String codusua)
 			throws ClienteException {
 
 		String mensaje = "";
@@ -73,6 +76,8 @@ public class AdmRepresentantes {
 			mensaje += "\ngrupo El grupo de bastanteo no puede ser vacio";
 		if (codcli.equals(""))
 			mensaje += "\ncodcli El Cliente no puede ser vacio";
+		if (codusua.equals(""))
+			mensaje += "\ncodusua El Usuario no puede ser vacio";
 		if (!mensaje.equals(""))
 			throw new ClienteException(mensaje);
 	}

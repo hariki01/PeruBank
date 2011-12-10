@@ -16,9 +16,10 @@ public class AdmLlenarDatos {
 		String fechaInicio = "01/01/2010";
 		String tipoEmpresa = "SAC";
 		int empleados = 10;
+		String codusua = "U003";
 
 		admcliente.registrarCliente(codigo, ruc, razonSocial, fechaInicio,
-				tipoEmpresa, empleados);
+				tipoEmpresa, empleados,codusua);
 
 		// 2. CLIENTE
 		ruc = "34509863021";
@@ -29,7 +30,7 @@ public class AdmLlenarDatos {
 		empleados = 30;
 
 		admcliente.registrarCliente(codigo, ruc, razonSocial, fechaInicio,
-				tipoEmpresa, empleados);
+				tipoEmpresa, empleados,codusua);
 
 		// System.out.println("Registro Satisfactoriamente los Clientes...");
 
@@ -44,14 +45,15 @@ public class AdmLlenarDatos {
 		String codigo = "CHCO";
 		String nombre = "Cobro de Cheques";
 		String tipoProducto = "Activo";
+		String codusua="U003";
 
-		admpoder.registrarPoderes(codigo, nombre, tipoProducto);
+		admpoder.registrarPoderes(codigo, nombre, tipoProducto,codusua);
 
 		codigo = "EFRE";
 		nombre = "Retiro en Efectivo";
 		tipoProducto = "Pasivo";
 
-		admpoder.registrarPoderes(codigo, nombre, tipoProducto);
+		admpoder.registrarPoderes(codigo, nombre, tipoProducto,codusua);
 
 		// System.out.println("Registro Satisfactoriamente los Poderes...");
 
@@ -73,9 +75,10 @@ public class AdmLlenarDatos {
 		String cargo = "Gerente";
 		String grupo = "A";
 		String codcli = "CL001";
-
+        String codusua = "U002";
+		
 		admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc,
-				ndoc, cargo, grupo, codcli);
+				ndoc, cargo, grupo, codcli,codusua);
 
 		// 2. Representante
 		codigo = "REP002";
@@ -88,7 +91,7 @@ public class AdmLlenarDatos {
 		codcli = "CL002";
 
 		admrep.registrarRepresentante(codigo, nombres, apellidos, tipodoc,
-				ndoc, cargo, grupo, codcli);
+				ndoc, cargo, grupo, codcli,codusua);
 
 		return admrep;
 	}
@@ -149,14 +152,26 @@ public class AdmLlenarDatos {
 		email = "jorvil_06@hotmail.com";
 		user = "jalcantara";
 		clave = "8520";
-		rol = "Usuario";
+		rol = "Supervisor";
 
 		admusuario.registrarUsuario(codigo, nombre, documento, email, user,
 				clave, rol);
 		
+		codigo = "U004";
+		nombre = "Luis Flores";
+		documento = "48960252";
+		email = "luisflores@hotmail.com";
+		user = "lflores";
+		clave = "123456";
+		rol = "Personal de Agencia";
+
+		admusuario.registrarUsuario(codigo, nombre, documento, email, user,
+				clave, rol);
+		
+		
 		//registro roles
 		
-		String nombreRol = "Abogado";
+		String nombreRol = "Supervisor";
 		String opcion = "Registro de Clientes";
 		
 		admusuario.RegistrarRol(nombreRol, opcion);
@@ -170,7 +185,23 @@ public class AdmLlenarDatos {
 		opcion = "Registro de Bastanteo";
 		
 		admusuario.RegistrarRol(nombreRol, opcion);
-
+		
+		nombreRol = "Supervisor";
+		opcion = "Registro de Poderes";
+		
+		admusuario.RegistrarRol(nombreRol, opcion);
+		
+		nombreRol = "Personal de Agencia";
+		opcion = "Verificacion de Poderes";
+		
+		admusuario.RegistrarRol(nombreRol, opcion);
+		
+		nombreRol = "Personal de Agencia";
+		opcion = "Consulta de Poderes";
+		
+		admusuario.RegistrarRol(nombreRol, opcion);
+		
+		
 
 		return admusuario;
 

@@ -14,7 +14,7 @@ public class AdmClientes {
 	}
 
 	public void registrarCliente(String codigo, String ruc, String razonSocial,
-			String fechaInicio, String tipoEmpresa, int empleados)
+			String fechaInicio, String tipoEmpresa, int empleados,String codusua)
 			throws ClienteException {
 
 		// validar datos
@@ -25,7 +25,7 @@ public class AdmClientes {
 
 		// Creamos un cliente
 		Cliente nuevoCliente = new Cliente(codigo, ruc, razonSocial,
-				fechaInicio, tipoEmpresa, empleados);
+				fechaInicio, tipoEmpresa, empleados,codusua);
 		// añaden a la lista
 		clientes.add(nuevoCliente);
 

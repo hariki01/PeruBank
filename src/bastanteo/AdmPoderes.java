@@ -12,31 +12,32 @@ public class AdmPoderes {
 		poderes = new ArrayList<Poderes>();
 	}
 
-	public void registrarPoderes(String codigo,String nombre,String tipoProducto)
+	public void registrarPoderes(String codigo,String nombre,String tipoProducto,String codusua)
 		throws ClienteException {
 
 		//validar datos
-		validarDatosPoderes(codigo, nombre, tipoProducto);
+		validarDatosPoderes(codigo, nombre, tipoProducto,codusua);
 		
 		//validar poderes
 		validarDuplicado(nombre,tipoProducto);		
 
-		Poderes poder = new Poderes(codigo,nombre,tipoProducto);
+		Poderes poder = new Poderes(codigo,nombre,tipoProducto,codusua);
 
 		// agregando los valores al areglo
 		poderes.add(poder);
 	}
 	
-	public void registrarPoderesparabastanteo(String codigo,String nombre,String tipoProducto)
+	public void registrarPoderesparabastanteo(String codigo,String nombre,String tipoProducto,
+			                                  String codusua )
 			throws ClienteException {
 
 			//validar datos
-			validarDatosPoderes(codigo, nombre, tipoProducto);
+			validarDatosPoderes(codigo, nombre, tipoProducto,codusua);
 			
 			//validar poderes
 			validarDuplicado(nombre,tipoProducto);		
 
-			Poderes poder = new Poderes(codigo,nombre,tipoProducto);
+			Poderes poder = new Poderes(codigo,nombre,tipoProducto,codusua);
 
 			// agregando los valores al areglo
 			poderes.add(poder);
@@ -57,7 +58,7 @@ public class AdmPoderes {
 			throw new ClienteException("Poder Inexistente");
 	}
 
-	private void validarDatosPoderes(String codigo, String nombre,String tipoProducto)
+	private void validarDatosPoderes(String codigo, String nombre,String tipoProducto,String codusua)
 			throws ClienteException {
 
 		String mensaje = "";
@@ -67,6 +68,8 @@ public class AdmPoderes {
 			mensaje += "\nNombre no puede ser vacio";
 		if (tipoProducto.equals(""))
 			mensaje += "\nTipo de Producto no puede ser vacio";
+		if (codusua.equals(""))
+			mensaje += "\nUsuario no puede ser vacio";
 		if (!mensaje.equals(""))
 			throw new ClienteException(mensaje);
 	}

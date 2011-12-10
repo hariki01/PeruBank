@@ -8,16 +8,18 @@ public class Cliente {
 	private String fechaInicio;
 	private String tipoEmpresa;
 	private int empleados;
+	private String codusua;
     
 	public Cliente(String codigo, String ruc, String razonSocial,
-			String fechaInicio, String tipoEmpresa, int empleados) {
+			String fechaInicio, String tipoEmpresa, int empleados,String codusua) {
 		super();  //el super siempre va en primer lugar
 		this.codigo = codigo;
 		this.ruc = ruc;
 		this.razonSocial = razonSocial;
 		this.fechaInicio = fechaInicio;
 		this.tipoEmpresa = tipoEmpresa;
-		this.empleados = empleados;		
+		this.empleados = empleados;
+		this.codusua = codusua;
 	}
 
 	public String getCodigo() {
@@ -50,6 +52,10 @@ public class Cliente {
 		return empleados;
 	}
 
+	public String getCodusua() {
+
+		return codusua;
+	}
 
 
 }

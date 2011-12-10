@@ -2,9 +2,34 @@ package bastanteo;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class AdmPoderesTest {
+	
+	AdmUsuario admusuario = new AdmUsuario();
+
+	String codUsuario = "";
+	AdmLlenarDatos adm = new AdmLlenarDatos();
+
+	@Before
+	public void ValidarUsuario() throws ClienteException {
+
+		String opcion = "Registro de Poderes";
+		String usuario = "jalcantara";
+		String clave = "8520";
+
+		admusuario.logon(usuario, clave);
+		admusuario.validarAcceso(usuario, clave, opcion);
+		codUsuario = admusuario.codigoUsuario(usuario, clave);
+
+	}
+
+	@Before
+	public void LlenarDatos() throws ClienteException {
+		admusuario = adm.registrarVariosUsuarios();
+	}
+
 
 	@Test
 	public void siIngresoDatosDeberiaRegistrarPoderes() throws ClienteException {
@@ -20,13 +45,13 @@ public class AdmPoderesTest {
 			nombre = "Cobro de Cheques";
 			tipoProducto = "Activo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
 
 			codigo = "EFRE";
 			nombre = "Retiro en Efectivo";
 			tipoProducto = "Pasivo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
 
 			assertNotNull(admpoder);
 
@@ -53,13 +78,13 @@ public class AdmPoderesTest {
 			nombre = "";
 			tipoProducto = "Activo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
 
 			codigo = "EFRE";
 			nombre = "Retiro en Efectivo";
 			tipoProducto = "Pasivo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
 
 			assertNotNull(admpoder);
 
@@ -86,13 +111,13 @@ public class AdmPoderesTest {
 			nombre = "Cobro de Cheques";
 			tipoProducto = "Activo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
 
 			codigo = "CHCO";
 			nombre = "Cobro de Cheques";
 			tipoProducto = "Activo";
 
-			admpoder.registrarPoderes(codigo, nombre, tipoProducto);
+			admpoder.registrarPoderes(codigo, nombre, tipoProducto,codUsuario);
 
 			assertNotNull(admpoder);
 
